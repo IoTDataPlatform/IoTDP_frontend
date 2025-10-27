@@ -1,0 +1,21 @@
+.vehicle-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+
+.vehicle-icon.bg-blue {
+  background-color: #18e330; /* Зеленый - вовремя */
+}
+
+.vehicle-icon.bg-orange {
+  background-color: #f39c12; /* Оранжевый - задержка */
+}
+
+.vehicle-icon.bg-red {
+  background-color: #e74c3c; /* Красный - критическая задержка */
+}
