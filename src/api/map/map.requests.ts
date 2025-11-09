@@ -1,6 +1,9 @@
 import { createRequest } from "../createRequest";
 import { projectConfig } from "../../config";
-import type { RouteGeometryOutput, RouteScheduleAtStopOutput, RoutesThroughStopOutput, StopsInRectInput, StopsInRectOutput } from "./map.types";
+import type {
+    RouteGeometryOutput, RouteScheduleAtStopOutput, RoutesThroughStopOutput, StopsInRectInput, StopsInRectOutput,
+    TripSummary, VehiclePosition
+} from "./map.types";
 
 const stopsUrlPrefix = `${projectConfig.backendUrl}/stops`;
 const routesUrlPrefix = `${projectConfig.backendUrl}/routes`;
@@ -31,3 +34,16 @@ export async function getRouteGeometry(routeId: string): Promise<RouteGeometryOu
         url: `${routesUrlPrefix}/${routeId}/geometry`
     })
 };
+
+export async function getTripsByRoute(routeId: string): Promise<TripSummary[]> {
+    return createRequest<TripSummary[]>({
+        url: `${projectConfig.backendUrl}/routes/${routeId}/trips`,
+    });
+}
+
+export async function getVehiclePosition(tripId: string, freshSeconds = 600): Promise<VehiclePosition> {
+    return createRequest<VehiclePosition>({
+        url: `${projectConfig.backendUrl}/position_redis/${tripId}`,
+        params: { freshSeconds },
+    });
+}
