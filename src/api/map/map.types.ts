@@ -47,3 +47,25 @@ export type RouteGeometryOutput = {
     shapes: Shape[];
 }
 
+export type TripSummary = {
+    tripId: string;
+    serviceId: string;
+    headsign: string | null;
+    directionId: number;
+    shapeId: string;
+    shortName: string | null;
+    blockId: string | null;
+};
+
+export type VehiclePosition = {
+    tripId: string;
+    vehicleId: string | null;
+    lat: number | null;
+    lon: number | null;
+    speed: number | null;
+    bearing: number | null;
+    routeId: string | null;
+    status: string | null;
+    lastUpdated: string | null;
+    inTransit: boolean | null;
+};
