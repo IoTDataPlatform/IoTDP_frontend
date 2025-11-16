@@ -13,7 +13,9 @@ const MapClickClear: React.FC<Props> = ({ enabled, onClear }) => {
             // если кликнули не по слою, где есть "interactive" элемент
             const target = (e.originalEvent as any).target as HTMLElement;
             const insidePopupOrMarker =
-                target.closest(".leaflet-popup") || target.closest(".leaflet-marker-icon");
+                target.closest(".leaflet-popup") ||
+                target.closest(".leaflet-marker-icon") ||
+                target.closest(".route-trips-panel");
             if (!insidePopupOrMarker) onClear();
         },
     });

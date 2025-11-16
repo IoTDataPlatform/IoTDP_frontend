@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Marker, Popup, useMapEvents } from "react-leaflet";
+import L from "leaflet";
 import {
     getStopsInRect,
     getRoutesThroughStop,
@@ -11,6 +12,14 @@ import type {
     StopsInRectInput,
     RoutesThroughStopOutput,
 } from "../api/map/map.types";
+import busStopPng from "../assets/bus-station.png";
+
+const stopIcon = L.icon({
+    iconUrl: busStopPng,
+    iconSize: [24, 24],      // подгони под реальный размер
+    iconAnchor: [12, 24],    // "носик" внизу посередине
+    popupAnchor: [0, -24],
+});
 
 const MIN_ZOOM_TO_SHOW_STOPS = 16;
 
@@ -151,6 +160,7 @@ const DynamicStopsLayer: React.FC<Props> = ({ onRouteClick }) => {
                 <Marker
                     key={stop.id}
                     position={[stop.lat, stop.lon]}
+                    icon={stopIcon}
                     eventHandlers={{
                         click: () => openStop(stop.id),
                     }}

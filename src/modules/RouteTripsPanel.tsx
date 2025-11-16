@@ -32,7 +32,7 @@ const RouteTripsPanel: React.FC<Props> = ({
             top: 10, left: 10, zIndex: 1000,
             background: "white", border: "1px solid #ddd", borderRadius: 8, padding: 10,
             maxHeight: 320, width: 300, overflow: "auto", boxShadow: "0 6px 18px rgba(0,0,0,0.15)"
-        }}>
+        }} className="route-trips-panel">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                 <b>Маршрут: {routeId}</b>
                 <button onClick={onClearRoute} title="Очистить маршрут" style={{ border: "none", background: "transparent", cursor: "pointer" }}>✕</button>

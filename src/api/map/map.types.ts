@@ -69,3 +69,32 @@ export type VehiclePosition = {
     lastUpdated: string | null;
     inTransit: boolean | null;
 };
+
+export type TripShapePoint = {
+    lat: number;
+    lon: number;
+    sequence: number;
+};
+
+export type TripShapeOutput = {
+    tripId: string;
+    routeId: string;
+    shapeId: string;
+    points: TripShapePoint[];
+};
+
+export type TripStop = {
+    stopId: string;
+    stopName: string;
+    lat: number;
+    lon: number;
+    sequence: number;
+    arrivalTime: string;    // "HH:mm:ss"
+    departureTime: string;  // "HH:mm:ss"
+};
+
+export type TripStopsOutput = {
+    tripId: string;
+    routeId: string;
+    stops: TripStop[];
+};
