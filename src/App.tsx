@@ -1,14 +1,14 @@
 import "./App.css";
-import Map from "./components/Map/Map";
+import MapRoot from "./components/Map/MapRoot";
 
 function App() {
-  return (
-    <>
-      <div className="App">
-        <Map />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="App">
+                <MapRoot />
+            </div>
+        </>
+    );
 }
 
 export default App;
