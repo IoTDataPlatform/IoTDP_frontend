@@ -13,33 +13,38 @@ const ClearRouteControl: React.FC<Props> = ({ visible, onClear }) => {
     useEffect(() => {
         if (!visible) return;
 
-        const Control = L.Control.extend({
-            onAdd() {
-                const container = L.DomUtil.create("div", "leaflet-bar");
-                const btn = L.DomUtil.create("a", "", container);
-                btn.href = "#";
-                btn.title = "Очистить маршрут";
-                btn.style.padding = "6px 10px";
-                btn.style.cursor = "pointer";
-                btn.style.userSelect = "none";
-                btn.innerText = "✕ маршрут";
+        const control = new L.Control({ position: "topright" });
 
-                L.DomEvent.on(btn, "click", (e: Event) => {
-                    L.DomEvent.stop(e);
-                    onClear();
-                });
+        control.onAdd = () => {
+            const container = L.DomUtil.create("div", "leaflet-bar");
+            const btn = L.DomUtil.create("a", "", container);
 
-                return container;
-            },
-        });
+            btn.href = "#";
+            btn.title = "Очистить маршрут";
+            btn.role = "button";
+            btn.style.padding = "6px 10px";
+            btn.style.cursor = "pointer";
+            btn.style.userSelect = "none";
+            btn.style.background = "white";
+            btn.style.fontSize = "14px";
+            btn.innerText = "✕ маршрут";
 
-        const control = new Control({ position: "topright" });
+            L.DomEvent.on(btn, "click", (e) => {
+                L.DomEvent.stop(e);
+                onClear();
+            });
+
+            L.DomEvent.disableClickPropagation(container);
+
+            return container;
+        };
+
         control.addTo(map);
 
         return () => {
             control.remove();
         };
-    }, [map, onClear, visible]);
+    }, [map, visible, onClear]);
 
     return null;
 };
